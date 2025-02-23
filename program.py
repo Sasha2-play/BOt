@@ -49,7 +49,7 @@ async def check_subscription(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if all(status in ["creator", "administrator", "member"] for status in statuses.values()):
         message_text += "\n🎉 Вы подписаны на оба канала! Вот ваш доступ:"
         keyboard = [[InlineKeyboardButton("🔞 Перейти в закрытый канал", url=RESTRICTED_CHANNEL)]]
-    
+
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.effective_message.reply_text(message_text, parse_mode='HTML', reply_markup=reply_markup)
 
@@ -64,7 +64,7 @@ def main():
     
     app.add_handler(CommandHandler("start", check_subscription))
     app.add_handler(CallbackQueryHandler(button_click, pattern="^check_sub$"))
-
+    
     app.run_polling()
 
 if __name__ == "__main__":
